@@ -3,16 +3,18 @@ import axios from "axios";
 
 export const getPostBySlug = async ({ slug }: { slug: string }) => {
 	try {
-		const response = await axios.get(`${process.env.BLOG_URL}/posts/${slug}`, {
-			headers: {
-				"x-api-key": process.env.BLOG_TEST_API_KEY,
+		const response = await axios.get(
+			`${process.env.OWN_BLOG_API_URL}/posts/${slug}`,
+			{
+				headers: {
+					"x-api-key": process.env.OWN_BLOG_API_KEY,
+				},
 			},
-		});
+		);
 
 		if (!response) return null;
 
 		const data = response.data;
-		console.log("post: ", data);
 
 		return data as Post;
 	} catch (error) {

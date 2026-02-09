@@ -3,12 +3,12 @@ import axios from "axios";
 
 export const getPosts = async () => {
 	try {
-		const response = await axios.get(`${process.env.BLOG_URL}/posts`, {
+		const response = await axios.get(`${process.env.OWN_BLOG_API_URL}/posts`, {
 			headers: {
-				"x-api-key": process.env.BLOG_TEST_API_KEY,
+				"x-api-key": process.env.OWN_BLOG_API_KEY,
 			},
 		});
-		if (!response || !response.data) return { posts: [], pagination: {} };
+		if (!response) return { posts: [], pagination: {} };
 		return response.data as Posts;
 	} catch (error) {
 		console.log({
