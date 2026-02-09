@@ -27,15 +27,15 @@ export function PostPreview({
 			<div className="mb-5">
 				<CoverImage slug={slug} title={title} src={featured_image_url} />
 			</div>
-			<h3 className="text-3xl mb-3 leading-snug">
+			<h3 className="text-2xl mb-3 leading-snug">
 				<Link href={`/posts/${slug}`} className="hover:underline">
 					{title}
 				</Link>
 			</h3>
-			<div className="text-lg mb-4">
+			<div className="text-base mb-4">
 				<DateFormatter dateString={published_at} />
 			</div>
-			<p className="text-lg leading-relaxed mb-4">{excerpt}</p>
+			<p className="text-base leading-relaxed mb-4">{excerpt}</p>
 			<Avatar name={creator.name} picture={creator.avatar} />
 		</div>
 	);

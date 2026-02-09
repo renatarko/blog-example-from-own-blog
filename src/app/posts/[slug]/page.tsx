@@ -26,7 +26,9 @@ export default async function Post(props: Params) {
 						published_at={post.published_at}
 						creator={post.creator}
 						excerpt={post.excerpt}
+						tags={post.tags}
 					/>
+
 					<PostBody {...post.content} />
 				</article>
 			</Container>
@@ -48,10 +50,11 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
 		return notFound();
 	}
 
-	const { metadata } = post;
+	const { metadata, tags: _tags } = post;
 
 	const title = `${metadata.seo_title} | Blog Example`;
 	const description = metadata.seo_description;
+	const tags = _tags?.map((tag) => tag.slug);
 
 	return {
 		title,
@@ -61,7 +64,7 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
 			title: metadata.og_title,
 			description: metadata.og_description,
 			images: [metadata.og_image_url ?? ""],
-			tags: post.tags,
+			tags,
 		},
 	};
 }

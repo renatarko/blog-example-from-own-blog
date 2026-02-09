@@ -1,6 +1,7 @@
 import { Creator } from "./creator";
 import { Category } from "./category";
 import { Pagination } from "./pagination";
+import { Tag } from "./tag";
 
 export interface HeaderContent {
 	title: string;
@@ -47,7 +48,7 @@ export interface Post {
 	published_at: string;
 	reading_time_minutes: number;
 	category?: Category;
-	tags?: [];
+	tags?: Tag[];
 	creator: Creator;
 	content: PostContent;
 	metadata: MetadataPost;
