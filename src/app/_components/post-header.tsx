@@ -1,34 +1,27 @@
+import { Post } from "@/interfaces/post";
 import Avatar from "./avatar";
-import CoverImage from "./cover-image";
 import DateFormatter from "./date-formatter";
 import { PostTitle } from "@/app/_components/post-title";
-import { type Author } from "@/interfaces/author";
 
-type Props = {
-  title: string;
-  coverImage: string;
-  date: string;
-  author: Author;
-};
+type Props = Pick<Post, "title" | "published_at" | "creator" | "excerpt">;
 
-export function PostHeader({ title, coverImage, date, author }: Props) {
-  return (
-    <>
-      <PostTitle>{title}</PostTitle>
-      <div className="hidden md:block md:mb-12">
-        <Avatar name={author.name} picture={author.picture} />
-      </div>
-      <div className="mb-8 md:mb-16 sm:mx-0">
-        <CoverImage title={title} src={coverImage} />
-      </div>
-      <div className="max-w-2xl mx-auto">
-        <div className="block md:hidden mb-6">
-          <Avatar name={author.name} picture={author.picture} />
-        </div>
-        <div className="mb-6 text-lg">
-          <DateFormatter dateString={date} />
-        </div>
-      </div>
-    </>
-  );
+export function PostHeader({ title, creator, published_at, excerpt }: Props) {
+	return (
+		<>
+			<div className="space-y-2">
+				<PostTitle>{title}</PostTitle>
+				{excerpt && <p className="leading-6 font-light italic">{excerpt}</p>}
+			</div>
+
+			<div className="my-12 flex items-center gap-4">
+				<Avatar
+					className="text-bold text-sm"
+					name={creator?.name}
+					picture={creator?.avatar}
+				/>
+				{"|"}
+				<DateFormatter dateString={published_at} />
+			</div>
+		</>
+	);
 }
