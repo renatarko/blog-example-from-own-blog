@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Container from "@/app/_components/container";
-import Header from "@/app/_components/header";
 import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
 import { getPostBySlug } from "@/app/actions/get-post-by-slug";
@@ -21,7 +20,6 @@ export default async function Post(props: Params) {
 	return (
 		<main>
 			<Container>
-				<Header />
 				<article className="mb-32 max-w-5xl mx-auto">
 					<PostHeader
 						title={post.title}

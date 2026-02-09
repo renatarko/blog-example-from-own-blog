@@ -1,29 +1,31 @@
 import Container from "@/app/_components/container";
-import { HeroPost } from "@/app/_components/hero-post";
 import { Intro } from "@/app/_components/intro";
-import { MoreStories } from "@/app/_components/more-stories";
-import { getPosts } from "./actions/get-posts";
-import { notFound } from "next/navigation";
+import { PostSkeleton } from "./_components/post-skeleton";
+import { Suspense } from "react";
+import HeroPostWrapper from "./_components/hero-post-wrapper";
+import PostsList from "./_components/post-list";
 
 export default async function Index() {
-	const { posts } = await getPosts();
-	if (!posts) {
-		return notFound();
-	}
-
 	return (
 		<main>
 			<Container>
 				<Intro />
-				<HeroPost
-					title={posts[0].title}
-					featured_image_url={posts[0].featured_image_url}
-					published_at={posts[0].published_at}
-					creator={posts[0].creator}
-					slug={posts[0].slug}
-					excerpt={posts[0].excerpt ?? ""}
-				/>
-				{posts.length > 0 && <MoreStories posts={posts} />}
+
+				<Suspense fallback={<PostSkeleton className="mt-16 mb-8" />}>
+					<HeroPostWrapper />
+				</Suspense>
+
+				<Suspense
+					fallback={
+						<div className="grid grid-cols-3 gap-4 mt-6">
+							<PostSkeleton />
+							<PostSkeleton />
+							<PostSkeleton />
+						</div>
+					}
+				>
+					<PostsList />
+				</Suspense>
 			</Container>
 		</main>
 	);
