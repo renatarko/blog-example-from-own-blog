@@ -1,5 +1,3 @@
-// components/PostsList.tsx
-
 import { getPosts } from "../actions/get-posts";
 import { MoreStories } from "./more-stories";
 

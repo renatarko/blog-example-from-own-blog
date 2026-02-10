@@ -42,7 +42,7 @@ export function HeroPost({
 				</div>
 				<div>
 					<p className="text-lg leading-relaxed mb-4">{excerpt}</p>
-					<Avatar name={creator.name} picture={creator.avatar} />
+					{creator && <Avatar name={creator.name} picture={creator.avatar} />}
 				</div>
 			</div>
 		</section>
