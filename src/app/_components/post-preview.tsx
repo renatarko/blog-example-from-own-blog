@@ -36,7 +36,7 @@ export function PostPreview({
 				<DateFormatter dateString={published_at} />
 			</div>
 			<p className="text-base leading-relaxed mb-4">{excerpt}</p>
-			{!!creator && <Avatar name={creator.name} picture={creator.avatar} />}
+			{!!creator && <Avatar {...creator} />}
 		</div>
 	);
 }
