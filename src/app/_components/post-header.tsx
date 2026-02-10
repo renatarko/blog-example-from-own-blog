@@ -28,8 +28,7 @@ export function PostHeader({
 			<div className="my-8 flex items-center gap-4">
 				<Avatar
 					className="text-bold text-sm"
-					name={creator?.name}
-					picture={creator?.avatar}
+					{...creator}
 				/>
 				{"|"}
 				<DateFormatter dateString={published_at} />
